@@ -1,0 +1,15 @@
+[submodule "third_party/sglang-blocksparse"]
+	path = third_party/sglang-blocksparse
+	# TODO: sglang-blocksparse is not published yet — replace PLACEHOLDER-ORG with
+	# the real GitHub org once it is. Existing clones must then run:
+	#   git submodule sync third_party/sglang-blocksparse
+	url = https://github.com/PLACEHOLDER-ORG/sglang-blocksparse.git
+	ignore = dirty
+[submodule "third_party/gorilla"]
+	path = third_party/gorilla
+	url = https://github.com/ShishirPatil/gorilla.git
+	ignore = dirty
+[submodule "third_party/vitabench"]
+	path = third_party/vitabench
+	url = https://github.com/meituan-longcat/vitabench.git
+	ignore = dirty

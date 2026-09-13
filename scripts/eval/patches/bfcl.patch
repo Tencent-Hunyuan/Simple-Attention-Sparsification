@@ -1,0 +1,100 @@
+diff --git a/berkeley-function-call-leaderboard/bfcl_eval/constants/model_config.py b/berkeley-function-call-leaderboard/bfcl_eval/constants/model_config.py
+index e42fe1c..3b8a25c 100644
+--- a/berkeley-function-call-leaderboard/bfcl_eval/constants/model_config.py
++++ b/berkeley-function-call-leaderboard/bfcl_eval/constants/model_config.py
+@@ -945,6 +945,78 @@ api_inference_model_map = {
+         is_fc_model=False,
+         underscore_to_dot=False,
+     ),
++    "qwen3-seer-4b-FC": ModelConfig(
++        model_name="qwen3-seer-4b",  # == sglang server --served-model-name
++        display_name="Qwen3-4B SeerAttn (FC)",
++        url="https://huggingface.co/Qwen/Qwen3-4B",
++        org="Custom",
++        license="apache-2.0",
++        model_handler=OpenAICompletionsHandler,
++        input_price=None,
++        output_price=None,
++        is_fc_model=True,
++        underscore_to_dot=True,
++    ),
++    "qwen3-dense-4b-FC": ModelConfig(
++        model_name="qwen3-dense-4b",  # == sglang server --served-model-name
++        display_name="Qwen3-4B Dense (FC)",
++        url="https://huggingface.co/Qwen/Qwen3-4B",
++        org="Custom",
++        license="apache-2.0",
++        model_handler=OpenAICompletionsHandler,
++        input_price=None,
++        output_price=None,
++        is_fc_model=True,
++        underscore_to_dot=True,
++    ),
++    "qwen3-seer-8b-FC": ModelConfig(
++        model_name="qwen3-seer-8b",  # == sglang server --served-model-name
++        display_name="Qwen3-8B SeerAttn (FC)",
++        url="https://huggingface.co/Qwen/Qwen3-8B",
++        org="Custom",
++        license="apache-2.0",
++        model_handler=OpenAICompletionsHandler,
++        input_price=None,
++        output_price=None,
++        is_fc_model=True,
++        underscore_to_dot=True,
++    ),
++    "qwen3-dense-8b-FC": ModelConfig(
++        model_name="qwen3-dense-8b",  # == sglang server --served-model-name
++        display_name="Qwen3-8B Dense (FC)",
++        url="https://huggingface.co/Qwen/Qwen3-8B",
++        org="Custom",
++        license="apache-2.0",
++        model_handler=OpenAICompletionsHandler,
++        input_price=None,
++        output_price=None,
++        is_fc_model=True,
++        underscore_to_dot=True,
++    ),
++    "qwen3-seer-14b-FC": ModelConfig(
++        model_name="qwen3-seer-14b",  # == sglang server --served-model-name
++        display_name="Qwen3-14B SeerAttn (FC)",
++        url="https://huggingface.co/Qwen/Qwen3-14B",
++        org="Custom",
++        license="apache-2.0",
++        model_handler=OpenAICompletionsHandler,
++        input_price=None,
++        output_price=None,
++        is_fc_model=True,
++        underscore_to_dot=True,
++    ),
++    "qwen3-dense-14b-FC": ModelConfig(
++        model_name="qwen3-dense-14b",  # == sglang server --served-model-name
++        display_name="Qwen3-14B Dense (FC)",
++        url="https://huggingface.co/Qwen/Qwen3-14B",
++        org="Custom",
++        license="apache-2.0",
++        model_handler=OpenAICompletionsHandler,
++        input_price=None,
++        output_price=None,
++        is_fc_model=True,
++        underscore_to_dot=True,
++    ),
+     "qwen3-8b-FC": ModelConfig(
+         model_name="qwen3-8b",
+         display_name="Qwen3-8B (FC)",
+diff --git a/berkeley-function-call-leaderboard/bfcl_eval/constants/supported_models.py b/berkeley-function-call-leaderboard/bfcl_eval/constants/supported_models.py
+index 047c273..5aaf481 100644
+--- a/berkeley-function-call-leaderboard/bfcl_eval/constants/supported_models.py
++++ b/berkeley-function-call-leaderboard/bfcl_eval/constants/supported_models.py
+@@ -82,6 +82,12 @@ SUPPORTED_MODELS = [
+     "qwen3-1.7b",
+     "qwen3-4b-FC",
+     "qwen3-4b",
++    "qwen3-seer-4b-FC",
++    "qwen3-dense-4b-FC",
++    "qwen3-seer-8b-FC",
++    "qwen3-dense-8b-FC",
++    "qwen3-seer-14b-FC",
++    "qwen3-dense-14b-FC",
+     "qwen3-8b-FC",
+     "qwen3-8b",
+     "qwen3-14b-FC",

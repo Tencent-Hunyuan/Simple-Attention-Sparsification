@@ -1,0 +1,27 @@
+diff --git a/src/vita/utils/llm_utils.py b/src/vita/utils/llm_utils.py
+index c5e91a5..df85d48 100644
+--- a/src/vita/utils/llm_utils.py
++++ b/src/vita/utils/llm_utils.py
+@@ -225,11 +225,21 @@ def generate(
+             data = kwargs_adapter(data, enable_think, messages)
+             headers = models[model]["headers"]
+ 
++            # `data.update(models[model])` merges the WHOLE yaml entry into the
++            # request body, including config-only keys (base_url, headers, name,
++            # max_input_tokens) that are NOT OpenAI chat params. DeepSeek's official
++            # API ignores them, but stricter gateways (e.g. the model-eval.woa.com
++            # LiteLLM proxy) REJECT a body containing `base_url` with a 401
++            # ("base_url is not allowed in request body"). Strip these before POST.
++            base_url = data["base_url"]
++            for _k in ("base_url", "headers", "name", "max_input_tokens"):
++                data.pop(_k, None)
++
+             max_retries = 3
+             retry_delay = 1
+             for attempt in range(max_retries + 1):
+                 try:
+-                    response = requests.post(data["base_url"], json=data, headers=headers, timeout=(10, 600))
++                    response = requests.post(base_url, json=data, headers=headers, timeout=(10, 600))
+ 
+                     if response.status_code != 500:
+                         response = response.json()

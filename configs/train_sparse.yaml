@@ -1,0 +1,52 @@
+model:
+  model_path: Qwen/Qwen3-4B
+  tokenizer_path: Qwen/Qwen3-4B
+
+data:
+  train_path: /path/to/your/train/data
+  train_size: 1000000
+  data_type: plaintext
+  max_seq_len: 2048
+  dataloader_type: native
+  datasets_type: mapping
+  text_keys: text
+  drop_last: true
+
+train:
+  output_dir: ./outputs/sparse_model
+  data_parallel_mode: fsdp2
+  ulysses_parallel_size: 1
+  global_batch_size: 32
+  micro_batch_size: 1
+  rmpad: false
+  rmpad_with_pos_ids: false
+  bsz_warmup_ratio: 0.0
+  dyn_bsz_margin: 0
+  optimizer: adamw
+  lr: 3.0e-4
+  lr_warmup_ratio: 0.01
+  lr_decay_style: cosine
+  lr_decay_ratio: 1.0
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  enable_mixed_precision: true
+  enable_gradient_checkpointing: true
+  enable_full_shard: true
+  enable_fsdp_offload: false
+  enable_activation_offload: false
+  init_device: meta
+  enable_full_determinism: false
+  empty_cache_steps: 500
+  ckpt_manager: dcp
+  load_checkpoint_path: ""
+  save_steps: 100
+  save_hf_weights: true
+  num_train_epochs: 1
+  use_wandb: false
+  wandb_project: sas
+  wandb_name: sparse-attn-experiment
+
+sparse:
+  sparse_mod: simple_sparse_attention
+  block_size: 64
+  topk: 4

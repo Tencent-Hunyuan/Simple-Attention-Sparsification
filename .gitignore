@@ -1,0 +1,27 @@
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+
+# logs
+*.log
+log.txt
+logs/
+wandb/
+outputs/
+results/
+
+# specially taged files
+.local/
+
+# rendered secrets (vita models.yaml with the injected DEEPSEEK_API_KEY)
+scripts/eval/results/vita_models-*.yaml
+
+# soft links
+datasets
+models
