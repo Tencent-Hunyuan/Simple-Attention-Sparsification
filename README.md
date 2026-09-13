@@ -30,10 +30,11 @@ Eval serves the model through the sglang-blocksparse, so build its env once firs
 cd third_party/sglang-blocksparse && pixi install && cd -
 ```
 
-> **Note.** `sglang-blocksparse` is not published yet, so its submodule URL in
-> `.gitmodules` is still a placeholder and `git submodule update --init` will fail
-> for it. Training does not need it; only the eval scripts do. If you already have a
-> checkout, point the scripts at it with `SGLANG_DIR=/path/to/sglang-blocksparse`.
+> **Note.** `sglang-blocksparse` is our [SGLang](https://github.com/sgl-project/sglang)
+> fork, published at [rayleizhu/sglang](https://github.com/rayleizhu/sglang) and fetched
+> via the submodule above. Training does not need it; only the eval scripts do. If you
+> already have a checkout elsewhere, point the scripts at it with
+> `SGLANG_DIR=/path/to/sglang-blocksparse`.
 
 Each script starts a sglang server once, runs the benchmark, and tears it down.
 Point `GATES` at an exported `AttnGates` dir (or `MODE=dense_4b BASE_MODEL=...` for
@@ -112,5 +113,5 @@ bash scripts/eval/run_vitabench.sh
 
 - [SeerAttention-R](https://github.com/microsoft/SeerAttention) — gate architecture, and grading logic.
 - [VeOmni](https://github.com/ByteDance-Seed/VeOmni) — training backbone.
-- sglang-blocksparse — our [SGLang](https://github.com/sgl-project/sglang) fork providing the `seer_attn` block-sparse backend used for eval (to be published; see the note under [Evaluation](#evaluation)).
+- [sglang-blocksparse](https://github.com/rayleizhu/sglang) — our [SGLang](https://github.com/sgl-project/sglang) fork providing the `seer_attn` block-sparse backend used for eval.
 - [BFCL / Gorilla](https://github.com/ShishirPatil/gorilla) and [VitaBench](https://github.com/meituan-longcat/vitabench) — function-calling / agent tool-use benchmarks.
