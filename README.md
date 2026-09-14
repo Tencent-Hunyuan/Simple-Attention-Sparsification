@@ -1,6 +1,10 @@
 # SAS: Simple Attention Sparsification via End-to-End Optimization of Context Ranking
 
-This repository provides the official implementation of [**SAS**](https://arxiv.org/abs/2609.13141).
+<p align="center">
+  <a href="https://arxiv.org/abs/2609.13141"><img src="https://img.shields.io/badge/arXiv-Paper-red?style=for-the-badge&logo=arxiv" alt="arXiv"></a>
+  <a href="https://github.com/Tencent-Hunyuan/Simple-Attention-Sparsification"><img src="https://img.shields.io/badge/GitHub-Repo-black?style=for-the-badge&logo=github" alt="GitHub"></a>
+  <a href="https://huggingface.co/tencent/Simple-Attention-Sparsification"><img src="https://img.shields.io/badge/HuggingFace-Models-yellow?style=for-the-badge&logo=huggingface" alt="Hugging Face"></a>
+</p>
 
 **SAS** is a gated sparse-attention mechanism that learns, per query, which blocks to attend to — optimizing the context ranking **end-to-end**
 with the language modeling loss instead of distilling the original model's dense
