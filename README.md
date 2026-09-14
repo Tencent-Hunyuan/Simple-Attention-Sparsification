@@ -8,18 +8,18 @@ attention.
 
 ![Overview of Simple Attention Sparsification](assets/method.png)
 
-**(a) Gradient blockage in discrete selection.** Standard sparse
+***(a) Gradient blockage in discrete selection.** Standard sparse
 attention relies on discrete Top-$K$ selection, which prevents gradients from
 the language-modeling loss from reaching the selector. Consequently, existing
 methods typically train the selector through auxiliary distillation objectives
-or hand-designed heuristics rather than optimizing context ranking directly.
+or hand-designed heuristics rather than optimizing context ranking directly.*
 
-**(b) Differentiable continuous gating.** SAS preserves discrete
+***(b) Differentiable continuous gating.** SAS preserves discrete
 Top-$K$ selection for efficient sparse computation, but equips each selected
 block with a continuous soft gate. By incorporating these gates into the
 attention logits, SAS establishes a differentiable path from the
 language-modeling loss to the selector, enabling end-to-end optimization of
-context ranking.
+context ranking.*
 
 ## Setup
 ### Install via pixi
