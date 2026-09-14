@@ -4,7 +4,7 @@ This repository provides the official implementation of [**SAS**](https://arxiv.
 
 **SAS** is a gated sparse-attention mechanism that learns, per query, which blocks to attend to — optimizing the context ranking **end-to-end**
 with the language modeling loss instead of distilling the original model's dense
-attention.
+attention. 
 
 ![Overview of Simple Attention Sparsification](assets/method.png)
 
@@ -48,6 +48,11 @@ export MODEL_PATH=/path/to/Qwen3-4B
 export DATA_PATH=/path/to/OpenR1-Math-220k/data
 bash scripts/train/simple_sparse_attention_Qwen3-4B.sh
 ```
+
+> **Resource requirements.** SAS has relatively low resource requirements and
+> can be trained on 8 NVIDIA H20 GPUs. We open-source the complete training and
+> evaluation pipeline, including training recipes, evaluation scripts, and the
+> SGLang-based sparse attention backend, to facilitate reproducibility.
 
 ## Evaluation
 
