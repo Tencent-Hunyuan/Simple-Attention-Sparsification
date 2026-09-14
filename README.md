@@ -1,8 +1,25 @@
 # SAS: Simple Attention Sparsification via End-to-End Optimization of Context Ranking
 
-SAS is a gated sparse-attention mechanism that learns, per query, which blocks to attend to — optimizing the context ranking **end-to-end**
-with the language-modeling loss instead of distilling the original model's dense
+This repository provides the official implementation of [**SAS**](https://arxiv.org/abs/2609.13141).
+
+**SAS** is a gated sparse-attention mechanism that learns, per query, which blocks to attend to — optimizing the context ranking **end-to-end**
+with the language modeling loss instead of distilling the original model's dense
 attention.
+
+![Overview of Simple Attention Sparsification](assets/method.png)
+
+**(a) Gradient blockage in discrete selection.** Standard sparse
+attention relies on discrete Top-$K$ selection, which prevents gradients from
+the language-modeling loss from reaching the selector. Consequently, existing
+methods typically train the selector through auxiliary distillation objectives
+or hand-designed heuristics rather than optimizing context ranking directly.
+
+**(b) Differentiable continuous gating.** SAS preserves discrete
+Top-$K$ selection for efficient sparse computation, but equips each selected
+block with a continuous soft gate. By incorporating these gates into the
+attention logits, SAS establishes a differentiable path from the
+language-modeling loss to the selector, enabling end-to-end optimization of
+context ranking.
 
 ## Setup
 ### Install via pixi
@@ -16,10 +33,20 @@ pixi install && git submodule update --init --recursive
 
 ## Training
 
+SAS currently provides training recipes for the
+[Qwen3-4B](https://huggingface.co/Qwen/Qwen3-4B),
+[Qwen3-8B](https://huggingface.co/Qwen/Qwen3-8B), and
+[Qwen3-14B](https://huggingface.co/Qwen/Qwen3-14B) models. Download the desired
+base model and the
+[OpenR1-Math-220k](https://huggingface.co/datasets/open-r1/OpenR1-Math-220k)
+training dataset before launching.
+
+Then select the script matching the model size:
+
 ```bash
 export MODEL_PATH=/path/to/Qwen3-4B
-export DATA_PATH=/path/to/openr1-math
-bash scripts/train/simple_sparse_attention_Qwen3-4B.sh   # also: 8B / 14B
+export DATA_PATH=/path/to/OpenR1-Math-220k/data
+bash scripts/train/simple_sparse_attention_Qwen3-4B.sh
 ```
 
 ## Evaluation
@@ -107,6 +134,22 @@ export TP=1 DP=8
 export DEEPSEEK_API_KEY=sk-...
 export DOMAIN=delivery,instore,ota
 bash scripts/eval/run_vitabench.sh
+```
+
+## Citation
+
+If you find SAS useful in your research, please cite our paper.
+
+```bibtex
+@misc{li2026sassimpleattentionsparsification,
+  title         = {SAS: Simple Attention Sparsification via End-to-End Optimization of Context Ranking},
+  author        = {Zhiwei Li and Lei Zhu and Hao Gu and Xiang Hu and Yan Wang and Haitao Mi and Sirui Han and Leo Liang and Zhijiang Guo},
+  year          = {2026},
+  eprint        = {2609.13141},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2609.13141}
+}
 ```
 
 ## Acknowledgements
